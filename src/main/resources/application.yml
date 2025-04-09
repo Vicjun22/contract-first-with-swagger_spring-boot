@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: project
+    description: Contract-First project with Swagger
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+  use-forward-headers: true
+
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} | [%thread] | %-5level | %logger{36} ->> %msg%n"
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
