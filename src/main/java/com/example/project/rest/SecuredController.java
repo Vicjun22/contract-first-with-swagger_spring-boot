@@ -1,17 +1,17 @@
 package com.example.project.rest;
 
-import org.openapitools.api.PublicApi;
+import org.openapitools.api.SecurityApi;
 import org.openapitools.model.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ExampleController implements PublicApi {
+public class SecuredController implements SecurityApi {
 
-    private ExampleController() { }
+    private SecuredController() { }
 
     @Override
-    public ResponseEntity<Response> getExampleResponse() {
+    public ResponseEntity<Response> getSecuredData() {
         Response response = new Response();
         response.setCode("200");
         response.setMessage("OK!");

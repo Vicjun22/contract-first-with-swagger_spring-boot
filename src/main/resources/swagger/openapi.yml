@@ -14,7 +14,7 @@ tags:
     description: "APIs for returning example responses."
 
 paths:
-  /example:
+  /public/example:
     get:
       tags:
         - "Example"
@@ -31,11 +31,38 @@ paths:
         "default":
           description: "An unexpected error occurred."
 
+  /security/example:
+    get:
+      tags:
+        - "Example"
+      summary: "Return a secured response"
+      description: "This endpoint requires JWT authentication and returns a secure example response."
+      operationId: "getSecuredData"
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: "OK - Authenticated request was successful and returns a secure response."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Response"
+              example:
+                code: "200"
+                message: "Authenticated request was successful!"
+        "401":
+          description: "Unauthorized - Authentication credentials were missing or invalid."
+        "403":
+          description: "Forbidden - You do not have access to this resource."
+        "default":
+          description: "An unexpected error occurred."
+
 components:
   securitySchemes:
-    basicAuth:
+    bearerAuth:
       type: http
-      scheme: basic
+      scheme: bearer
+      bearerFormat: JWT
 
   schemas:
     Response:
